@@ -1,0 +1,157 @@
+246:file handling functions
+#1.create file 
+with open("data.txt", "w") as file:
+    for i in range(1, 4):
+        name = input("Enter name: ")
+        file.write(name + "\n")
+
+
+#2read file 
+with open("data.txt", "r") as file:
+    data = file.read()
+#print data
+print(data)
+
+
+#3no of character in file like lenth 
+print("No of character in file:", len(data))
+
+
+#4no of word in file
+b = data.split()
+print("No of word in file:", len(b))
+c = data.splitlines()
+print("No of line in file:", len(c))
+
+
+#5No of vowels 
+vow = "aeiouAEIOU"
+count = 0
+for i in data:
+    if i in vow:
+        count=count+1
+print("No of vowels in file:", count)
+
+
+#6.one file to another file to copy
+with open("data.txt", "r") as file:
+    data = file.read()
+with open("data1.txt", "w") as file:
+    data.upper()
+    file.write(data)
+
+#7.print second file data
+with open("data1.txt", "r") as file:
+    data = file.read()
+print(data)
+
+#8.readlines
+with open("data1.txt", "r") as file:
+    data = file.readline()
+print(data)
+while data:
+    print(data.strip())
+    data=file.readlines
+    print(data)
+
+#9.read all lines
+with open ("data.txt","r") as file:
+    data=file.readlines()
+    print(data)
+for index,line in enumerate(11,start=1):
+    print(f"Line{index}:{line.strip()}")
+
+#10.count total uppercase and lower case in file
+upper = 0
+lower = 0
+for i in data:
+    if i.isupper():
+        uppere =upper + 1
+    elif i.islower():
+        lower = lower + 1
+print("No of uppercase :", upper)
+print("No of lowercase:", lower)
+
+#11.count character specialsymbol and digit and space in file
+special = 0
+digits = 0
+spaces = 0
+for i in data:
+    if i.isdigit():
+        digits = digits + 1
+    elif i.isspace():
+        spaces = spaces + 1
+    else:
+        special = special + 1
+print("No of digits:", digits)
+print("No of spaces:", spaces)
+print("No of special symbols:", special)
+
+#12.search word in file
+word = input("Enter word to search: ")
+if word in data.split():
+    print("Word found in file.")
+else:
+    print("Word not found in file.")
+#13.replace specific word in file
+old = input("Enter word to replace: ")
+new = input("Enter new word:")
+with open("data.txt", "r") as file:
+    data = file.read()
+data = data.replace(old,new)
+with open("data.txt", "w") as file:
+    file.write(data)
+print("Word replaced successfully.")
+====================================================================
+247:login
+
+user_id = input("Enter User ID: ").strip()
+user_pass = input("Enter Password: ").strip()
+
+found = False
+
+
+    
+file = open("users.txt", "r")
+    
+    
+for line in file:
+        data = line.strip().split(",")
+        stored_user = data[0]
+        stored_pass = data[1]
+        
+        
+        if user_id == stored_user and user_pass == stored_pass:
+            found = True
+            break
+            
+file.close()
+
+if found:
+        print("Login Successful!")
+else:
+        print("Invalid User ID or Password.")
+===================================================================
+248:signup
+# signup.py - Sign Up Script
+
+print("=== SIGN UP ===")
+username = input("Enter User ID: ").strip()
+password = input("Enter Password: ").strip()
+
+# Open file in append mode ('a') so existing data isn't deleted
+file = open("users.txt", "a")
+
+# Write data separated by comma with a newline at the end
+file.write(username + "," + password + "\n")
+
+# Close the file
+file.close()
+
+print("Sign up successful! Data saved to users.txt")
+'''
+=== SIGN UP ===
+Enter User ID: 11
+Enter Password: 12345
+Sign up successful! Data saved to users.txt
+'''

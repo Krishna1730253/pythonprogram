@@ -1,0 +1,80 @@
+"""Program 1.10: BMI calculator."""
+
+weight = float(input("Enter weight in kg: "))
+height = float(input("Enter height in metres: "))
+if height <= 0:
+    print("Height must be greater than zero.")
+else:
+    bmi = weight / height ** 2
+    if bmi < 18.5:
+        category = "Underweight"
+    elif bmi < 25:
+        category = "Normal"
+    elif bmi < 30:
+        category = "Overweight"
+    else:
+        category = "Obese"
+    print("BMI:", round(bmi, 2), "(" + category + ")")
+'''
+Enter weight in kg: 16
+Enter height in metres: 20
+BMI: 0.04 (Underweight)
+'''
+============================
+""Program 1.13: classify a number."""
+
+number = int(input("Enter an integer: "))
+sign = "positive" if number > 0 else "negative" if number < 0 else "zero"
+parity = "even" if number % 2 == 0 else "odd"
+divisible = "is" if number % 5 == 0 else "is not"
+print("The number is", sign + ",", parity + ", and", divisible, "divisible by 5.")
+'''
+Enter an integer: 10
+The number is positive, even, and is divisible by 5.
+'''
+==========================================================
+
+"""Program 1.14: grade calculator."""
+
+marks = float(input("Enter marks: "))
+if marks >= 90:
+    grade = "A+"
+elif marks >= 80:
+    grade = "A"
+elif marks >= 70:
+    grade = "B"
+elif marks >= 60:
+    grade = "C"
+elif marks >= 35:
+    grade = "D"
+else:
+    grade = "Fail"
+print("Grade:", grade)
+if marks >= 90:
+    print("Distinction")
+'''
+Enter marks: 28
+Grade: Fail
+'''
+====================================================
+"""Program 1.17: check a prime and list primes."""
+def is_prime(number):
+    if number < 2:
+        return False
+    for divisor in range(2, int(number ** 0.5) + 1):
+        if number % divisor == 0:
+            return False
+    return True
+
+number = int(input("Enter N: "))
+if is_prime(number):
+    print(number, "is prime.")
+else:
+    print(number, "is not prime.")
+print("Primes from 2 to N:", *[n for n in range(2, number + 1) if is_prime(n)])
+'''
+Enter N: 6
+6 is not prime.
+Primes from 2 to N: 2 3 5
+'''
+=====================================================

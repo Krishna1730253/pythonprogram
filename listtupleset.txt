@@ -1,0 +1,422 @@
+"""Program 3.1: list statistics."""
+count = int(input("How many numbers? "))
+numbers = [float(input("Number " + str(i) + ": ")) for i in range(1, count + 1)]
+if numbers:
+    print("List:", numbers)
+    print("Sorted:", sorted(numbers))
+    print("Reversed:", list(reversed(numbers)))
+    print("Max:", max(numbers))
+    print("Min:", min(numbers))
+    print("Sum:", sum(numbers))
+    print("Average:", round(sum(numbers) / len(numbers), 2))
+else: print("No numbers entered.")
+'''
+How many numbers? 3
+Number 1: 11
+Number 2: 22
+Number 3: 33
+List: [11.0, 22.0, 33.0]
+Sorted: [11.0, 22.0, 33.0]
+Reversed: [33.0, 22.0, 11.0]
+Max: 33.0
+Min: 11.0
+Sum: 66.0
+Average: 22.0
+'''
+==============================================
+
+"""Program 3.2: stack using a list."""
+stack = []
+def push(item): stack.append(item)
+def pop(): return stack.pop() if stack else "Stack is empty"
+def peek(): return stack[-1] if stack else "Stack is empty"
+def is_empty(): return not stack
+def display(): print("Stack:", stack)
+
+for item in [10, 20, 30, 40, 50]: push(item)
+display()
+print("Peek:", peek())
+print("Popped:", pop(), pop())
+display()
+print("Is empty:", is_empty())
+'''
+Stack: [10, 20, 30, 40, 50]
+Peek: 50
+Popped: 50 40
+Stack: [10, 20, 30]
+Is empty: False
+'''
+=================================================
+
+"""Program 3.3: list comprehension examples."""
+sentence = "Python makes programming simple and enjoyable"
+print("Squares:", [number ** 2 for number in range(1, 21)])
+print("Even numbers:", [number for number in range(1, 51) if number % 2 == 0])
+print("Long words:", [word for word in sentence.split() if len(word) > 4])
+print("Odd cubes:", [number ** 3 for number in range(1, 16) if number % 2 != 0])
+'''
+Squares: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400]
+Even numbers: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50]
+Long words: ['Python', 'makes', 'programming', 'simple', 'enjoyable']
+Odd cubes: [1, 27, 125, 343, 729, 1331, 2197, 3375]
+'''
+===============================================
+
+"""Program 3.4: tuple operations."""
+marks = (72, 85, 91, 68, 79)
+print("Marks:", marks)
+print("First mark:", marks[0])
+print("Slice 1:4:", marks[1:4])
+print("Length:", len(marks))
+minimum, maximum, average = min(marks), max(marks), sum(marks) / len(marks)
+print("Min:", minimum, "Max:", maximum, "Average:", round(average, 2))
+try: marks[0] = 100
+except TypeError as error: print("Tuple cannot be modified:", error)
+updated_marks = list(marks)
+updated_marks[0] = 100
+marks = tuple(updated_marks)
+print("Updated tuple:", marks)
+'''
+Marks: (72, 85, 91, 68, 79)
+First mark: 72
+Slice 1:4: (85, 91, 68)
+Length: 5
+Min: 68 Max: 91 Average: 79.0
+Tuple cannot be modified: 'tuple' object does not support item assignment
+Updated tuple: (100, 85, 91, 68, 79)
+'''
+============================================================
+
+"""Program 3.5: dictionary-based phone book."""
+phone_book = {"Aarav": "9876543210", "Diya": "9876543211", "Kabir": "9876543212", "Meera": "9876543213", "Rohan": "9876543214"}
+name = input("Search contact name: ")
+print("Number:", phone_book.get(name, "Contact not found"))
+phone_book["Diya"] = "9999999999"
+removed = phone_book.pop("Rohan")
+print("Updated Diya number and removed Rohan:", removed)
+for contact in sorted(phone_book): print(contact + ":", phone_book[contact])
+'''Search contact name: hepi
+Number: Contact not found
+Updated Diya number and removed Rohan: 9876543214
+Aarav: 9876543210
+Diya: 9999999999
+Kabir: 9876543212
+Meera: 9876543213
+'''
+========================================================
+
+"""Program 3.6: count words by frequency."""
+paragraph = input("Enter a paragraph: ").lower()
+counts = {}
+for word in paragraph.replace(".", "").replace(",", "").split(): counts[word] = counts.get(word, 0) + 1
+for word, count in sorted(counts.items(), key=lambda item: item[1], reverse=True): print(word + ":", count)
+'''Enter a paragraph: hello,how are you?
+hellohow: 1
+are: 1
+you?: 1'''
+===========================================================
+
+"""Program 3.7: set operations."""
+odd_numbers = set(range(1, 16, 2))
+multiples_of_three = set(range(3, 16, 3))
+print("Odd numbers:", odd_numbers)
+print("Multiples of 3:", multiples_of_three)
+print("Union:", odd_numbers | multiples_of_three)
+print("Intersection:", odd_numbers & multiples_of_three)
+print("Odd - multiples:", odd_numbers - multiples_of_three)
+print("Multiples - odd:", multiples_of_three - odd_numbers)
+print("Symmetric difference:", odd_numbers ^ multiples_of_three)
+'''Odd numbers: {1, 3, 5, 7, 9, 11, 13, 15}
+Multiples of 3: {3, 6, 9, 12, 15}
+Union: {1, 3, 5, 6, 7, 9, 11, 12, 13, 15}
+Intersection: {9, 3, 15}
+Odd - multiples: {1, 5, 7, 11, 13}
+Multiples - odd: {12, 6}
+Symmetric difference: {1, 5, 6, 7, 11, 12, 13}'''
+===========================================================
+
+"""Program 3.8: 3x3 matrix operations."""
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+print("Matrix:")
+for row in matrix: print(*row, sep="\t")
+for index, row in enumerate(matrix, 1): print("Row", index, "sum:", sum(row))
+print("Main diagonal sum:", sum(matrix[i][i] for i in range(3)))
+'''Matrix:
+1       2       3
+4       5       6
+7       8       9
+Row 1 sum: 6
+Row 2 sum: 15
+Row 3 sum: 24
+Main diagonal sum: 15'''
+===========================================================
+
+"""Program 3.9: student gradebook."""
+gradebook = {"Aarav": [85, 80, 90], "Diya": [72, 78, 75], "Kabir": [95, 92, 96], "Meera": [88, 84, 86]}
+averages = {name: sum(marks) / len(marks) for name, marks in gradebook.items()}
+for name, average in sorted(averages.items(), key=lambda item: item[1], reverse=True): print(name + ":", round(average, 2))
+top_student = max(averages, key=averages.get)
+print("Top student:", top_student, "(" + str(round(averages[top_student], 2)) + ")")
+'''Kabir: 94.33
+Meera: 86.0
+Aarav: 85.0
+Diya: 75.0
+Top student: Kabir (94.33)'''
+============================================================
+
+"""Program 3.10: remove duplicates and compare lists."""
+count = int(input("How many numbers in list 1? "))
+list_one = [int(input("Number " + str(i) + ": ")) for i in range(1, count + 1)]
+list_two = [int(value) for value in input("Enter list 2 numbers separated by spaces: ").split()]
+frequency = {}
+for number in list_one: frequency[number] = frequency.get(number, 0) + 1
+print("Without duplicates:", list(set(list_one)))
+print("Only in list 1:", list(set(list_one) - set(list_two)))
+print("Frequency:", frequency)
+'''How many numbers in list 1? 5
+Number 1: 1
+Number 2: 2
+Number 3: 3
+Number 4: 4
+Number 5: 5
+Enter list 2 numbers separated by spaces: 1 2
+Without duplicates: [1, 2, 3, 4, 5]
+Only in list 1: [3, 4, 5]
+Frequency: {1: 1, 2: 1, 3: 1, 4: 1, 5: 1}'''
+
+==============================================================
+49:append insert remove
+
+numbers = [10, 20, 30, 40]
+
+print("Original List:", numbers)
+
+numbers.append(50)
+
+print("After Append:", numbers)
+
+numbers.insert(2, 25)
+
+print("After Insert:", numbers)
+
+numbers.remove(30)
+
+print("After Remove:", numbers)
+
+'''
+Original List: [10, 20, 30, 40]
+After Append: [10, 20, 30, 40, 50]
+After Insert: [10, 20, 25, 30, 40, 50]
+After Remove: [10, 20, 25, 40, 50]
+'''
+===================================================
+50:avg of a number in list
+
+numbers = [10, 20, 30, 40, 60, 99, 1, 50]
+
+average = sum(numbers) / len(numbers)
+
+print("Average =", average)
+'''
+Average = 38.75
+'''
+==================================================
+51:check element if it exsist or not
+
+numbers = [10, 20, 30, 40, 50, 601, 42, 32, 67]
+
+value = int(input("Enter number: "))
+
+if value in numbers:
+    print("Element Found")
+else:
+    print("Element Not Found")
+'''
+Enter number: 44
+Element Not Found
+'''
+====================================================
+52:common no in list
+
+list1 = [15, 27, 43, 68]
+list2 = [43, 68, 91, 24]
+
+common = []
+
+for i in list1:
+    if i in list2:
+        common.append(i)
+
+print("Common Elements:", common)
+'''
+Common Elements: [43, 68]
+'''
+========================================================
+53:count element how many times it appears
+numbers = [10, 20, 30, 20, 40, 20, 50]
+
+value = int(input("Enter number: "))
+
+count = numbers.count(value)
+
+print(value, "appears", count, "times")
+'''
+Enter number: 80
+80 appears 0 times
+'''
+===================================================
+54:first-middle-last element
+numbers = [10, 20, 30, 40, 50, 60, 70]
+
+first = numbers[0]
+last = numbers[-1]
+middle = numbers[len(numbers) // 2]
+
+print("First element :", first)
+print("Middle element:", middle)
+print("Last element  :", last)
+'''
+First element : 10
+Middle element: 40
+Last element  : 70
+'''
+=====================================================
+55:length of list
+numbers = [10, 20, 30, 40, 50, 60, 80, 120, 47, 43, 54, 57, 69]
+
+length = len(numbers)
+
+print("Length of list =", length)
+'''
+Length of list = 13
+'''
+=======================================================
+56:list of number
+
+numbers = [1011, 2110, 30, 460, 450, 260, 702, 807, 940, 100]
+
+
+print("List of numbers:")
+print(numbers)
+'''
+List of numbers:
+[1011, 2110, 30, 460, 450, 260, 702, 807, 940, 100]
+'''
+=========================================================
+57:max and min
+numbers = [25, 10, 45, 5, 30]
+
+maximum = numbers[0]
+minimum = numbers[0]
+
+for num in numbers:
+    if num > maximum:
+        maximum = num
+
+    if num < minimum:
+        minimum = num
+
+print("Maximum =", maximum)
+print("Minimum =", minimum)
+'''
+Maximum = 45
+Minimum = 5
+'''
+==================================================
+58:merge list
+list1 = ["Dev", "vatsal", "manav"]
+list2 = ["dhaval", "yash", "Pooja"]
+
+merged = list1 + list2
+
+print("Merged List:", merged)
+'''
+Merged List: ['Dev', 'vatsal', 'manav', 'dhaval', 'yash', 'Pooja']
+'''
+==================================================
+59:no common in list
+list1 = [18, 35, 47, 62]
+list2 = [35, 51, 78, 90]
+
+difference = []
+difference1 = []
+
+for i in list1:
+    if i not in list2:
+        difference.append(i)
+
+for i in list2:
+    if i not in list1:
+        difference1.append(i)
+print("Elements only in List1:", difference)
+print("Elements only in List1:", difference1)
+
+print("----------------------------------------------")
+print("                    OR                        ")
+print("----------------------------------------------")
+
+list1 = [18, 35, 47, 62]
+list2 = [35, 51, 78, 90]
+difference = []
+for i in list1:
+    if i not in list2:
+        difference.append(i)
+
+print("Elements only in List1:", difference)
+'''
+Elements only in List1: [18, 47, 62]
+Elements only in List1: [51, 78, 90]
+----------------------------------------------
+                    OR                        
+----------------------------------------------
+Elements only in List1: [18, 47, 62]
+'''
+========================================================
+60:reverse list without using reverse
+numbers = [10123, 2022, 301, 401, 540]
+
+reversed_list = numbers[::-1]
+
+print("Original List :", numbers)
+print("Reversed List:", reversed_list)
+'''
+Original List : [10123, 2022, 301, 401, 540]
+Reversed List: [540, 401, 301, 2022, 10123]
+'''
+===========================================================
+61:second largest and second smallest
+numbers = [23, 58, 14, 91, 37]
+numbers.sort()
+print("Second Smallest =", numbers[1])
+print("Second Largest =", numbers[-2])
+'''
+Second Smallest = 23
+Second Largest = 58
+'''
+==========================================================
+62:shallow copy
+list1 = ["Dev", "Maahi", "Dhruv"]
+
+list2 = list1.copy()
+
+list2.append("Pooja")
+
+print("Original List:", list1)
+print("Copied List:", list2)
+'''
+Original List: ['Dev', 'Maahi', 'Dhruv']
+Copied List: ['Dev', 'Maahi', 'Dhruv', 'Pooja']
+'''
+========================================================
+63:sum of all element in the list
+numbers = [10, 20, 30, 40, 50, 120, 340, 200]
+
+total = sum(numbers)
+print(numbers)
+print("Sum =", total)
+'''
+[10, 20, 30, 40, 50, 120, 340, 200]
+Sum = 810
+'''
+======================================================
+6

@@ -1,0 +1,329 @@
+"""Program 2.7: menu-driven modular calculator."""
+def add(a, b): return a + b
+def subtract(a, b): return a - b
+def multiply(a, b): return a * b
+def divide(a, b): return a / b
+def power(a, b): return a ** b
+
+operations = {"1": ("Add", add), "2": ("Subtract", subtract), "3": ("Multiply", multiply), "4": ("Divide", divide), "5": ("Power", power)}
+for key, (name, _) in operations.items(): print(key + ".", name)
+choice = input("Choose an operation: ")
+if choice in operations:
+    a, b = float(input("First number: ")), float(input("Second number: "))
+    try: print("Result:", operations[choice][1](a, b))
+    except ZeroDivisionError: print("Cannot divide by zero.")
+else: print("Invalid choice.")
+'''
+1. Add
+2. Subtract
+3. Multiply
+4. Divide
+5. Power
+Choose an operation: 1
+First number: 1
+Second number: 2
+Result: 3.0
+'''
+============================================================
+
+"""Program 2.8: common string methods."""
+sentence = input("Enter a sentence: ")
+print("Upper:", sentence.upper())
+print("Lower:", sentence.lower())
+print("Title:", sentence.title())
+print("Stripped:", sentence.strip())
+print("Words:", sentence.split())
+print("Underscores:", sentence.replace(" ", "_"))
+print("First 'a':", sentence.find("a"))
+'''
+Enter a sentence: dax
+Upper: DAX
+Lower: dax
+Title: Dax
+Stripped: dax
+Words: ['dax']
+Underscores: dax
+First 'a': 1
+'''
+=============================================================
+
+"""Program 2.9: anagram checker."""
+def is_anagram(first, second):
+    return sorted(first.replace(" ", "").lower()) == sorted(second.replace(" ", "").lower())
+
+pairs = [("listen", "silent"), ("earth", "heart"), ("python", "typhon"), ("hello", "world")]
+for first, second in pairs: print(first + ",", second + ":", is_anagram(first, second))
+'''
+listen, silent: True
+earth, heart: True
+python, typhon: True
+hello, world: False
+'''
+==============================================================
+
+"""Program 2.10: formatted report card using f-strings."""
+student_name, roll_no = "Your Name", "Your Roll No."
+marks = [85, 78, 92, 88, 81]
+total, percentage = sum(marks), sum(marks) / 5
+grade = "A+" if percentage >= 90 else "A" if percentage >= 80 else "B" if percentage >= 70 else "C" if percentage >= 60 else "D" if percentage >= 35 else "Fail"
+print(f"{'REPORT CARD':^34}\n{'Name:':15}{student_name}\n{'Roll No.:':15}{roll_no}\n{'Marks:':15}{marks}\n{'Total:':15}{total}/500\n{'Percentage:':15}{percentage:.2f}%\n{'Grade:':15}{grade}")
+'''
+           REPORT CARD            
+Name:          Your Name
+Roll No.:      Your Roll No.
+Marks:         [85, 78, 92, 88, 81]
+Total:         424/500
+Percentage:    84.80%
+Grade:         A
+'''
+=================================================================
+
+"""Program 2.11: function with default parameters."""
+def display_info(name, city="Ahmedabad", programme="M.Sc. IT"):
+    print("Name:", name, "City:", city, "Programme:", programme)
+
+display_info("Riya", "Surat", "MCA")
+display_info("Aman")
+display_info("Neha", "Vadodara")
+'''
+Name: Riya City: Surat Programme: MCA
+Name: Aman City: Ahmedabad Programme: M.Sc. IT
+Name: Neha City: Vadodara Programme: M.Sc. IT
+'''
+============================================================
+
+"""Program 2.12: sort and filter student records."""
+students = [("Aarav", 82), ("Diya", 55), ("Kabir", 91), ("Meera", 67), ("Rohan", 48)]
+sorted_students = sorted(students, key=lambda student: student[1], reverse=True)
+passed_students = list(filter(lambda student: student[1] >= 60, students))
+print("Sorted by marks:", sorted_students)
+print("Marks >= 60:", passed_students)
+'''
+Sorted by marks: [('Kabir', 91), ('Aarav', 82), ('Meera', 67), ('Diya', 55), ('Rohan', 48)]
+Marks >= 60: [('Aarav', 82), ('Kabir', 91), ('Meera', 67)]
+'''
+===============================================
+
+"""Program 3.1: list statistics."""
+count = int(input("How many numbers? "))
+numbers = [float(input("Number " + str(i) + ": ")) for i in range(1, count + 1)]
+if numbers:
+    print("List:", numbers)
+    print("Sorted:", sorted(numbers))
+    print("Reversed:", list(reversed(numbers)))
+    print("Max:", max(numbers))
+    print("Min:", min(numbers))
+    print("Sum:", sum(numbers))
+    print("Average:", round(sum(numbers) / len(numbers), 2))
+else: print("No numbers entered.")
+'''
+How many numbers? 3
+Number 1: 11
+Number 2: 22
+Number 3: 33
+List: [11.0, 22.0, 33.0]
+Sorted: [11.0, 22.0, 33.0]
+Reversed: [33.0, 22.0, 11.0]
+Max: 33.0
+Min: 11.0
+Sum: 66.0
+Average: 22.0
+'''
+==============================================
+
+"""Program 3.2: stack using a list."""
+stack = []
+def push(item): stack.append(item)
+def pop(): return stack.pop() if stack else "Stack is empty"
+def peek(): return stack[-1] if stack else "Stack is empty"
+def is_empty(): return not stack
+def display(): print("Stack:", stack)
+
+for item in [10, 20, 30, 40, 50]: push(item)
+display()
+print("Peek:", peek())
+print("Popped:", pop(), pop())
+display()
+print("Is empty:", is_empty())
+'''
+Stack: [10, 20, 30, 40, 50]
+Peek: 50
+Popped: 50 40
+Stack: [10, 20, 30]
+Is empty: False
+'''
+=================================================
+
+"""Program 3.3: list comprehension examples."""
+sentence = "Python makes programming simple and enjoyable"
+print("Squares:", [number ** 2 for number in range(1, 21)])
+print("Even numbers:", [number for number in range(1, 51) if number % 2 == 0])
+print("Long words:", [word for word in sentence.split() if len(word) > 4])
+print("Odd cubes:", [number ** 3 for number in range(1, 16) if number % 2 != 0])
+'''
+Squares: [1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400]
+Even numbers: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50]
+Long words: ['Python', 'makes', 'programming', 'simple', 'enjoyable']
+Odd cubes: [1, 27, 125, 343, 729, 1331, 2197, 3375]
+'''
+===============================================
+
+"""Program 3.4: tuple operations."""
+marks = (72, 85, 91, 68, 79)
+print("Marks:", marks)
+print("First mark:", marks[0])
+print("Slice 1:4:", marks[1:4])
+print("Length:", len(marks))
+minimum, maximum, average = min(marks), max(marks), sum(marks) / len(marks)
+print("Min:", minimum, "Max:", maximum, "Average:", round(average, 2))
+try: marks[0] = 100
+except TypeError as error: print("Tuple cannot be modified:", error)
+updated_marks = list(marks)
+updated_marks[0] = 100
+marks = tuple(updated_marks)
+print("Updated tuple:", marks)
+'''
+Marks: (72, 85, 91, 68, 79)
+First mark: 72
+Slice 1:4: (85, 91, 68)
+Length: 5
+Min: 68 Max: 91 Average: 79.0
+Tuple cannot be modified: 'tuple' object does not support item assignment
+Updated tuple: (100, 85, 91, 68, 79)
+'''
+============================================================
+
+"""Program 3.5: dictionary-based phone book."""
+phone_book = {"Aarav": "9876543210", "Diya": "9876543211", "Kabir": "9876543212", "Meera": "9876543213", "Rohan": "9876543214"}
+name = input("Search contact name: ")
+print("Number:", phone_book.get(name, "Contact not found"))
+phone_book["Diya"] = "9999999999"
+removed = phone_book.pop("Rohan")
+print("Updated Diya number and removed Rohan:", removed)
+for contact in sorted(phone_book): print(contact + ":", phone_book[contact])
+'''Search contact name: hepi
+Number: Contact not found
+Updated Diya number and removed Rohan: 9876543214
+Aarav: 9876543210
+Diya: 9999999999
+Kabir: 9876543212
+Meera: 9876543213
+'''
+========================================================
+
+"""Program 3.6: count words by frequency."""
+paragraph = input("Enter a paragraph: ").lower()
+counts = {}
+for word in paragraph.replace(".", "").replace(",", "").split(): counts[word] = counts.get(word, 0) + 1
+for word, count in sorted(counts.items(), key=lambda item: item[1], reverse=True): print(word + ":", count)
+'''Enter a paragraph: hello,how are you?
+hellohow: 1
+are: 1
+you?: 1'''
+===========================================================
+
+"""Program 3.7: set operations."""
+odd_numbers = set(range(1, 16, 2))
+multiples_of_three = set(range(3, 16, 3))
+print("Odd numbers:", odd_numbers)
+print("Multiples of 3:", multiples_of_three)
+print("Union:", odd_numbers | multiples_of_three)
+print("Intersection:", odd_numbers & multiples_of_three)
+print("Odd - multiples:", odd_numbers - multiples_of_three)
+print("Multiples - odd:", multiples_of_three - odd_numbers)
+print("Symmetric difference:", odd_numbers ^ multiples_of_three)
+'''Odd numbers: {1, 3, 5, 7, 9, 11, 13, 15}
+Multiples of 3: {3, 6, 9, 12, 15}
+Union: {1, 3, 5, 6, 7, 9, 11, 12, 13, 15}
+Intersection: {9, 3, 15}
+Odd - multiples: {1, 5, 7, 11, 13}
+Multiples - odd: {12, 6}
+Symmetric difference: {1, 5, 6, 7, 11, 12, 13}'''
+"""Program 3.8: 3x3 matrix operations."""
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+print("Matrix:")
+for row in matrix: print(*row, sep="\t")
+for index, row in enumerate(matrix, 1): print("Row", index, "sum:", sum(row))
+print("Main diagonal sum:", sum(matrix[i][i] for i in range(3)))
+'''Matrix:
+1       2       3
+4       5       6
+7       8       9
+Row 1 sum: 6
+Row 2 sum: 15
+Row 3 sum: 24
+Main diagonal sum: 15'''
+===========================================================
+
+"""Program 3.9: student gradebook."""
+gradebook = {"Aarav": [85, 80, 90], "Diya": [72, 78, 75], "Kabir": [95, 92, 96], "Meera": [88, 84, 86]}
+averages = {name: sum(marks) / len(marks) for name, marks in gradebook.items()}
+for name, average in sorted(averages.items(), key=lambda item: item[1], reverse=True): print(name + ":", round(average, 2))
+top_student = max(averages, key=averages.get)
+print("Top student:", top_student, "(" + str(round(averages[top_student], 2)) + ")")
+'''Kabir: 94.33
+Meera: 86.0
+Aarav: 85.0
+Diya: 75.0
+Top student: Kabir (94.33)'''
+============================================================
+
+"""Program 3.10: remove duplicates and compare lists."""
+count = int(input("How many numbers in list 1? "))
+list_one = [int(input("Number " + str(i) + ": ")) for i in range(1, count + 1)]
+list_two = [int(value) for value in input("Enter list 2 numbers separated by spaces: ").split()]
+frequency = {}
+for number in list_one: frequency[number] = frequency.get(number, 0) + 1
+print("Without duplicates:", list(set(list_one)))
+print("Only in list 1:", list(set(list_one) - set(list_two)))
+print("Frequency:", frequency)
+'''How many numbers in list 1? 5
+Number 1: 1
+Number 2: 2
+Number 3: 3
+Number 4: 4
+Number 5: 5
+Enter list 2 numbers separated by spaces: 1 2
+Without duplicates: [1, 2, 3, 4, 5]
+Only in list 1: [3, 4, 5]
+Frequency: {1: 1, 2: 1, 3: 1, 4: 1, 5: 1}'''
+
+=============================================================
+
+"""Program 3.11: simple inventory using functions."""
+inventory = {"pen": 10, "notebook": 3, "eraser": 6}
+def add_item(name, quantity): inventory[name] = inventory.get(name, 0) + quantity
+def remove_item(name): return inventory.pop(name, "Item not found")
+def update_qty(name, quantity): inventory[name] = quantity
+def display_inventory():
+    for name, quantity in sorted(inventory.items()): print(name + ":", quantity)
+def low_stock(): return {name: qty for name, qty in inventory.items() if qty < 5}
+
+add_item("pencil", 4)
+update_qty("pen", 8)
+remove_item("eraser")
+display_inventory()
+print("Low stock:", low_stock())
+'''notebook: 3
+pen: 8
+pencil: 4
+Low stock: {'notebook': 3, 'pencil': 4}'''
+=================================================
+
+"""Program 3.12: to-do list with ordered tasks and unique tags."""
+tasks = []
+def add_task(task, tags): tasks.append({"task": task, "tags": set(tags)})
+def display_all():
+    for index, item in enumerate(tasks, 1): print(str(index) + ".", item["task"], "-", ", ".join(sorted(item["tags"])))
+def find_by_tag(tag): return [item["task"] for item in tasks if tag in item["tags"]]
+
+add_task("Complete Python practical", ["study", "python"])
+add_task("Buy notebook", ["personal", "shopping"])
+add_task("Revise functions", ["study", "python"])
+display_all()
+print("Tasks tagged 'study':", find_by_tag("study"))
+'''1. Complete Python practical - python, study
+2. Buy notebook - personal, shopping
+3. Revise functions - python, study
+Tasks tagged 'study': ['Complete Python practical', 'Revise functions']'''
+===================================================

@@ -1,0 +1,566 @@
+1.
+==
+name = "Your Full Name"
+roll_no = "Your Roll Number"
+programme = "M.Sc. IT"
+semester = "Semester 1"
+print(name)
+print(roll_no)
+print(programme)
+print(semester)
+'''
+Your Full Name
+Your Roll Number
+M.Sc. IT
+Semester 1
+'''
+================================================
+
+2.
+==
+name = input("Enter your name: ")
+age = input("Enter your age: ")
+city = input("Enter your favourite city: ")
+print("Hello! My name is " + name + ". I am " + age + " years old and I love " + city + ".")
+'''
+Enter your name: DAX
+Enter your age: 18
+Enter your favourite city: GOA
+Hello! My name is DAX. I am 18 years old and I love GOA.
+'''
+=================================================
+
+3.
+==
+principal = float(input("Enter principal amount: "))
+rate = float(input("Enter annual rate (%): "))
+time = float(input("Enter time (years): "))
+interest = principal * rate * time / 100
+print("Simple interest:", round(interest, 2))
+print("Total amount:", round(principal + interest, 2))
+'''
+Enter principal amount: 50
+Enter annual rate (%): 20
+Enter time (years): 2020
+Simple interest: 20200.0
+Total amount: 20250.0
+'''
+===============================================
+
+4.
+==
+celsius = float(input("Enter temperature in Celsius: "))
+fahrenheit = celsius * 9 / 5 + 32
+kelvin = celsius + 273.15
+print("Fahrenheit:", round(fahrenheit, 2), "F")
+print("Kelvin:", round(kelvin, 2), "K")
+'''
+Enter temperature in Celsius: 30
+Fahrenheit: 86.0 F
+Kelvin: 303.15 K
+'''
+================================================
+
+5.
+==
+from math import pi
+7.extract digits of a three-digit number
+==
+number = int(input("Enter a three-digit number: "))
+if 100 <= abs(number) <= 999:
+    number = abs(number)
+    hundreds, remainder = divmod(number, 100)
+    tens, units = divmod(remainder, 10)
+    print("Hundreds:", hundreds)
+    print("Tens:", tens)
+    print("Units:", units)
+    print("Sum:", hundreds + tens + units)
+    print("Product:", hundreds * tens * units)
+else:
+    print("Please enter exactly a three-digit number.")
+'''
+Enter a three-digit number: 123
+Hundreds: 1
+Tens: 2
+Units: 3
+Sum: 6
+Product: 6
+'''
+===============================================
+
+8.kilometre converter
+==
+kilometres = float(input("Enter distance in kilometres: "))
+print("Metres:", round(kilometres * 1000, 2))
+print("Centimetres:", round(kilometres * 100000, 2))
+print("Miles:", round(kilometres * 0.621371, 2))
+print("Feet:", round(kilometres * 3280.84, 2))
+'''
+Enter distance in kilometres: 15
+Metres: 15000.0
+Centimetres: 1500000.0
+Miles: 9.32
+Feet: 49212.6
+'''
+================================================
+
+9.swap two numbers in two ways
+==
+a = float(input("Enter first number: "))
+b = float(input("Enter second number: "))
+original_a, original_b = a, b
+print("Before swap: a =", a, ", b =", b)
+a, b = b, a
+print("Tuple swap: a =", a, ", b =", b)
+a, b = original_a, original_b
+a = a + b
+b = a - b
+a = a - b
+print("Arithmetic swap: a =", a, ", b =", b)
+'''
+Enter first number: 12
+Enter second number: 13
+Before swap: a = 12.0 , b = 13.0
+Tuple swap: a = 13.0 , b = 12.0
+Arithmetic swap: a = 13.0 , b = 12.0
+'''
+============================================
+
+"""Program 1.10: BMI calculator."""
+
+weight = float(input("Enter weight in kg: "))
+height = float(input("Enter height in metres: "))
+if height <= 0:
+    print("Height must be greater than zero.")
+else:
+    bmi = weight / height ** 2
+    if bmi < 18.5:
+        category = "Underweight"
+    elif bmi < 25:
+        category = "Normal"
+    elif bmi < 30:
+        category = "Overweight"
+    else:
+        category = "Obese"
+    print("BMI:", round(bmi, 2), "(" + category + ")")
+'''
+Enter weight in kg: 16
+Enter height in metres: 20
+BMI: 0.04 (Underweight)
+'''
+=================================================
+
+"""Program 1.11: marks, percentage and average."""
+
+marks = []
+for subject in range(1, 6):
+    marks.append(float(input("Enter marks for subject " + str(subject) + ": ")))
+total = sum(marks)
+print("Total:", round(total, 2), "/500")
+print("Percentage:", round(total / 5, 2), "%")
+print("Average:", round(total / 5, 2))
+'''
+Enter marks for subject 1: 20
+Enter marks for subject 2: 25
+Enter marks for subject 3: 30
+Enter marks for subject 4: 22
+Enter marks for subject 5: 27
+Total: 124.0 /500
+Percentage: 24.8 %
+Average: 24.8
+'''
+================================================
+
+"""Program 1.12: electric bill calculator."""
+
+previous = float(input("Enter previous meter reading: "))
+current = float(input("Enter current meter reading: "))
+units = current - previous
+if units < 0:
+    print("Current reading cannot be less than previous reading.")
+else:
+    print("Units consumed:", round(units, 2))
+    print("Total bill: Rs.", round(units * 5.50 + 100, 2))
+'''
+Enter previous meter reading: 665
+Enter current meter reading: 60
+Current reading cannot be less than previous reading.
+'''
+========================================================
+
+"""Program 1.13: classify a number."""
+
+number = int(input("Enter an integer: "))
+sign = "positive" if number > 0 else "negative" if number < 0 else "zero"
+parity = "even" if number % 2 == 0 else "odd"
+divisible = "is" if number % 5 == 0 else "is not"
+print("The number is", sign + ",", parity + ", and", divisible, "divisible by 5.")
+'''
+Enter an integer: 10
+The number is positive, even, and is divisible by 5.
+'''
+==========================================================
+
+"""Program 1.14: grade calculator."""
+
+marks = float(input("Enter marks: "))
+if marks >= 90:
+    grade = "A+"
+elif marks >= 80:
+    grade = "A"
+elif marks >= 70:
+    grade = "B"
+elif marks >= 60:
+    grade = "C"
+elif marks >= 35:
+    grade = "D"
+else:
+    grade = "Fail"
+print("Grade:", grade)
+if marks >= 90:
+    print("Distinction")
+'''
+Enter marks: 28
+Grade: Fail
+'''
+====================================================
+
+"""Program 1.15: multiplication table."""
+
+number = int(input("Enter a number: "))
+for value in range(1, 11):
+    print(number, "x", value, "=", number * value)
+'''
+Enter a number: 5
+5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+5 x 4 = 20
+5 x 5 = 25
+5 x 6 = 30
+5 x 7 = 35
+5 x 8 = 40
+5 x 9 = 45
+5 x 10 = 50
+'''
+====================================================
+
+"""Program 1.16: factorial using a for loop."""
+number = int(input("Enter a non-negative integer: "))
+if number < 0:
+    print("Factorial is not defined for negative numbers.")
+else:
+    fact = 1
+    for value in range(2, number + 1):
+        fact *= value
+    print(number, "! =", fact)
+'''
+Enter a non-negative integer: 5
+5 ! = 120
+'''
+=======================================================
+
+"""Program 1.17: check a prime and list primes."""
+def is_prime(number):
+    if number < 2:
+        return False
+    for divisor in range(2, int(number ** 0.5) + 1):
+        if number % divisor == 0:
+            return False
+    return True
+
+number = int(input("Enter N: "))
+if is_prime(number):
+    print(number, "is prime.")
+else:
+    print(number, "is not prime.")
+print("Primes from 2 to N:", *[n for n in range(2, number + 1) if is_prime(n)])
+'''
+Enter N: 6
+6 is not prime.
+Primes from 2 to N: 2 3 5
+'''
+=====================================================
+
+"""Program 1.18: Fibonacci series with while loop."""
+terms = int(input("How many terms? "))
+a, b, count = 0, 1, 0
+while count < terms:
+    print(a, end=" ")
+    a, b = b, a + b
+    count += 1
+print()
+'''
+How many terms? 5
+0 1 1 2 3 
+'''
+=====================================================
+
+"""Program 1.19: reverse and test a number."""
+original = int(input("Enter a non-negative number: "))
+if original < 0:
+    print("Please enter a non-negative number.")
+else:
+    number, reverse = original, 0
+    while number > 0:
+        reverse = reverse * 10 + number % 10
+        number //= 10
+    print("Reversed number:", reverse)
+    print("It is a palindrome." if original == reverse else "It is not a palindrome.")
+'''
+Enter a non-negative number: 5
+Reversed number: 5
+It is a palindrome.
+'''
+=======================================================
+
+"""Program 1.20: star pattern collection."""
+rows = 5
+print("Right-angled triangle")
+for i in range(1, rows + 1): print("*" * i)
+print("Inverted triangle")
+for i in range(rows, 0, -1): print("*" * i)
+print("Diamond")
+for i in range(1, rows + 1, 2): print(" " * ((rows - i) // 2) + "*" * i)
+for i in range(rows - 2, 0, -2): print(" " * ((rows - i) // 2) + "*" * i)
+'''
+Right-angled triangle
+*
+**
+***
+****
+*****
+Inverted triangle
+*****
+****
+***
+**
+*
+Diamond
+  *
+ ***
+*****
+ ***
+  *
+  '''
+====================================================
+
+"""Program 1.21: Armstrong number checker and finder."""
+def is_armstrong(number):
+    digits = str(number)
+    return number == sum(int(digit) ** len(digits) for digit in digits)
+
+number = int(input("Enter a number: "))
+if is_armstrong(number):
+    print(number, "is an Armstrong number.")
+else:
+    print(number, "is not an Armstrong number.")
+print("Armstrong numbers from 1 to 999:")
+print(*[n for n in range(1, 1000) if is_armstrong(n)])
+'''
+Enter a number: 12
+12 is not an Armstrong number.
+Armstrong numbers from 1 to 999:
+1 2 3 4 5 6 7 8 9 153 370 371 407
+'''
+=====================================================
+
+"""Program 1.22: ATM PIN simulator."""
+correct_pin = "1234"
+attempts = 0
+while attempts < 3:
+    pin = input("Enter your 4-digit PIN: ")
+    if pin == correct_pin:
+        print("Access Granted")
+        break
+    attempts += 1
+    print("Incorrect PIN")
+else:
+    print("Card Blocked")
+'''
+Enter your 4-digit PIN: 1234
+Access Granted
+'''
+======================================================
+
+"""Program 1.23: sums of natural numbers, squares and cubes."""
+number = int(input("Enter N: "))
+natural = squares = cubes = 0
+for value in range(1, number + 1):
+    natural += value
+    squares += value ** 2
+    cubes += value ** 3
+print("Natural number sum:", natural)
+print("Square sum:", squares)
+print("Cube sum:", cubes)
+'''
+Enter N: 5
+Natural number sum: 15
+Square sum: 55
+Cube sum: 225
+'''
+=====================================================
+
+"""Program 1.24: ascending and descending number patterns."""
+for row in range(1, 6):
+    for number in range(1, row + 1): print(number, end=" ")
+    print()
+print("Reverse pattern")
+for row in range(5, 0, -1):
+    for number in range(1, row + 1): print(number, end=" ")
+    print()
+'''
+1 
+1 2 
+1 2 3 
+1 2 3 4 
+1 2 3 4 5 
+Reverse pattern
+1 2 3 4 5 
+1 2 3 4 
+1 2 3 
+1 2 
+1 
+'''
+=======================================================
+
+"""Program 2.1: basic functions."""
+def greet(name): print("Hello, " + name + "!")
+def square(number): return number ** 2
+def cube(number): return number ** 3
+
+for name, number in [("Aarav", 2), ("Diya", 3), ("Kunal", 4)]:
+    greet(name)
+    print("Square of", number, ":", square(number))
+    print("Cube of", number, ":", cube(number))
+'''
+Hello, Aarav!
+Square of 2 : 4
+Cube of 2 : 8
+Hello, Diya!
+Square of 3 : 9
+Cube of 3 : 27
+Hello, Kunal!
+Square of 4 : 16
+Cube of 4 : 64
+'''
+=========================================================
+
+"""Program 1.22: ATM PIN simulator."""
+correct_pin = "1234"
+attempts = 0
+while attempts < 3:
+    pin = input("Enter your 4-digit PIN: ")
+    if pin == correct_pin:
+        print("Access Granted")
+        break
+    attempts += 1
+    print("Incorrect PIN")
+else:
+    print("Card Blocked")
+'''
+Enter your 4-digit PIN: 1234
+Access Granted
+'''
+=============================================
+
+"""Program 2.2: prime checker function."""
+def is_prime(number):
+    if number < 2: return False
+    for divisor in range(2, int(number ** 0.5) + 1):
+        if number % divisor == 0: return False
+    return True
+
+roll_no = int(input("Enter your roll number: "))
+for number in range(roll_no, roll_no + 11):
+    print(number, ":", "Prime" if is_prime(number) else "Not prime")
+'''
+Enter your roll number: 2
+2 : Prime
+3 : Prime
+4 : Not prime
+5 : Prime
+6 : Not prime
+7 : Prime
+8 : Not prime
+9 : Not prime
+10 : Not prime
+11 : Prime
+12 : Not prime
+'''
+==================================================
+
+"""Program 2.3: factorial table using a function."""
+def factorial(number):
+    result = 1
+    for value in range(2, number + 1): result *= value
+    return result
+
+print("Number  Factorial")
+for number in range(1, 11): print(number, "=", factorial(number))
+'''
+Number  Factorial
+1 = 1
+2 = 2
+3 = 6
+4 = 24
+5 = 120
+6 = 720
+7 = 5040
+8 = 40320
+9 = 362880
+10 = 3628800
+'''
+==================================================
+
+"""Program 2.4: multi-return statistics function."""
+def stats(a, b, c):
+    return a + b + c, (a + b + c) / 3, min(a, b, c), max(a, b, c)
+
+values = [float(input("Enter number " + str(i) + ": ")) for i in range(1, 4)]
+total, average, minimum, maximum = stats(*values)
+print("Sum:", total)
+print("Average:", round(average, 2))
+print("Minimum:", minimum)
+print("Maximum:", maximum)
+'''
+Enter number 1: 12
+Enter number 2: 17
+Enter number 3: 54
+Sum: 83.0
+Average: 27.67
+Minimum: 12.0
+Maximum: 54.0
+'''
+==================================================
+
+"""Program 2.5: reverse strings and check palindromes."""
+def reverse_string(text): return text[::-1]
+def is_palindrome(text): return text.lower() == reverse_string(text).lower()
+
+samples = ["madam", "racecar", "Your Name", "Your City"]
+for text in samples:
+    print(text, ": reverse =", reverse_string(text), ", palindrome =", is_palindrome(text))
+'''
+madam : reverse = madam , palindrome = True
+racecar : reverse = racecar , palindrome = True
+Your Name : reverse = emaN ruoY , palindrome = False
+Your City : reverse = ytiC ruoY , palindrome = False
+'''
+======================================================
+
+"""Program 2.6: vowel and character frequency functions."""
+def count_vowels(text): return sum(char.lower() in "aeiou" for char in text)
+def char_frequency(text):
+    counts = {}
+    for char in text: counts[char] = counts.get(char, 0) + 1
+    return counts
+
+sentence = input("Enter a sentence: ")
+print("Vowels:", count_vowels(sentence))
+print("Character frequency:", char_frequency(sentence))
+'''
+Enter a sentence: how are you?
+Vowels: 5
+Character frequency: {'h': 1, 'o': 2, 'w': 1, ' ': 2, 'a': 1, 'r': 1, 'e': 1, 'y': 1, 'u': 1, '?': 1}
+'''
